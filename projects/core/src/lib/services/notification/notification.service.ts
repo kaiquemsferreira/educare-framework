@@ -1,8 +1,9 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Injectable } from '@angular/core';
-import {ErrorComponent} from './components/error/error.component';
-import {SuccessComponent} from './components/success/success.component';
-import {WarningComponent} from './components/warning/warning.component';
+
+import { ErrorComponent } from './components/error/error.component';
+import { SuccessComponent } from './components/success/success.component';
+import { WarningComponent } from './components/warning/warning.component';
 
 @Injectable({
   providedIn: 'root'

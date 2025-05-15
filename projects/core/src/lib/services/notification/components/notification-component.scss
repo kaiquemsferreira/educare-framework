@@ -1,6 +1,31 @@
-$success-color: rgba(54, 179, 126, 1) !default;
-$warning-color: rgba(243, 187, 27, 1) !default;
-$danger-color: rgba(240, 54, 55, 1) !default;
+$success-color: rgb(91, 225, 168) !default;
+$warning-color: rgb(229, 196, 83) !default;
+$danger-color: rgb(234, 105, 105) !default;
+
+.notification-component {
+  overflow-y: hidden;
+  font-size: 1.6rem;
+  .fa-regular {
+    font-size: 1.6rem;
+  }
+}
+mat-snack-bar-container {
+  overflow-y: hidden;
+  animation: ease-in fade-in 0.5s ;
+  transform: none !important;
+  .mdc-snackbar__surface {
+    position: absolute;
+    bottom: 3rem;
+    .mdc-snackbar__label {
+      padding-right: 1.6rem;
+      padding-bottom: 1.8rem;
+    }
+    .mat-mdc-snack-bar-label.mdc-snackbar__label {
+      background: rgba(15, 15, 15, 1);
+      border-radius: 0.2rem;
+    }
+  }
+}
 
 section {
   display: flex;
@@ -14,19 +39,19 @@ section {
   }
 }
 
-.success-notification {
+.success-snackbar {
   color: $success-color;
   button {
     color: $success-color;
   }
 }
-.warning-notification {
+.warning-snackbar {
   color: $warning-color;
   button {
     color: $warning-color;
   }
 }
-.error-notification {
+.error-snackbar {
   color: $danger-color;
   button {
     color: $danger-color;
