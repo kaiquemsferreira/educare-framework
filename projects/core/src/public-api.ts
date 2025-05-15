@@ -1,6 +1,3 @@
-export * from './lib/core.component';
-export * from './lib/core.service';
-
 export * from './lib/config/api.config';
 
 
@@ -9,6 +6,7 @@ export * from './lib/services/geolocation/geolocation.service';
 export * from './lib/services/screen-size/screen-size.service';
 export * from './lib/services/translation/translation.service';
 export * from './lib/services/notification/notification.service';
+export * from './lib/services/authentication/authentication.service';
 
 export * from './lib/services/notification/components/success/success.component';
 export * from './lib/services/notification/components/warning/warning.component';

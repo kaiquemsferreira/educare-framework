@@ -1,6 +1,6 @@
 {
   "name": "educare-framework-core",
-  "version": "1.6.4",
+  "version": "1.7.1",
   "dependencies": {
     "tslib": "^2.3.0"
   },
@@ -8,6 +8,7 @@
     "@angular/common": "^19.2.0",
     "@angular/core": "^19.2.0",
     "@angular/material": "^19.2.15",
+    "jwt-decode": "^4.0.0",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
