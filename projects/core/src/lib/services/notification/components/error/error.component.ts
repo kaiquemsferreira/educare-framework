@@ -1,11 +1,12 @@
 import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'lib-error',
   imports: [],
   templateUrl: './error.component.html',
-  styleUrl: './error.component.scss'
+  styleUrls: ['./error.component.scss', '../notification-component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ErrorComponent {
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: { message: string },

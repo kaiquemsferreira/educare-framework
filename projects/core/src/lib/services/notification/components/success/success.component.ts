@@ -1,11 +1,12 @@
 import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'lib-success',
   imports: [],
   templateUrl: './success.component.html',
-  styleUrl: './success.component.scss'
+  styleUrls: ['./success.component.scss', '../notification-component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SuccessComponent {
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: { message: string },
