@@ -1,6 +1,6 @@
 {
   "name": "educare-framework-core",
-  "version": "1.7.1",
+  "version": "1.8.5",
   "dependencies": {
     "tslib": "^2.3.0"
   },

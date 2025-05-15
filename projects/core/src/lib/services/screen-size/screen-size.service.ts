@@ -35,4 +35,15 @@ export class ScreenSizeService {
         this.screenSizeSubject.next(model);
       });
   }
+
+  public initializeScreenSizeModel(): ScreenSizeModel {
+    return {
+      isHandsetLandscape: false,
+      isHandsetPortrait: false,
+      isTabletLandscape: false,
+      isTabletPortrait: false,
+      isWebLandscape: false,
+      isWebPortrait: false
+    };
+  }
 }
