@@ -5,7 +5,7 @@ import { Component, Inject } from '@angular/core';
   selector: 'lib-success',
   imports: [],
   templateUrl: './success.component.html',
-  styleUrl: './success.component.css'
+  styleUrl: './success.component.scss'
 })
 export class SuccessComponent {
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: { message: string },

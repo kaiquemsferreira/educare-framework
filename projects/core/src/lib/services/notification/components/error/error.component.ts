@@ -5,7 +5,7 @@ import { Component, Inject } from '@angular/core';
   selector: 'lib-error',
   imports: [],
   templateUrl: './error.component.html',
-  styleUrl: './error.component.css'
+  styleUrl: './error.component.scss'
 })
 export class ErrorComponent {
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: { message: string },

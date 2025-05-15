@@ -5,7 +5,7 @@ import { Component, Inject } from '@angular/core';
   selector: 'lib-warning',
   imports: [],
   templateUrl: './warning.component.html',
-  styleUrl: './warning.component.css'
+  styleUrl: './warning.component.scss'
 })
 export class WarningComponent {
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: { message: string },
