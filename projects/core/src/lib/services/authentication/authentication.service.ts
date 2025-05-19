@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { AuthCredentialsModel } from '../../models/authentication/auth-credentials.model';
 import { DecodedTokenModel } from '../../models/authentication/decoded-token.model';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { jwtDecode } from 'jwt-decode';
 import { firstValueFrom } from 'rxjs';
 
@@ -13,7 +13,7 @@ import { firstValueFrom } from 'rxjs';
 export class AuthenticationService {
   private readonly TOKEN_KEY = 'token';
 
-  constructor(private readonly translateService: TranslateService) { }
+  constructor(private readonly translateService: TranslocoService) { }
 
   public saveToken(token: string): void {
     localStorage.setItem(this.TOKEN_KEY, token);
@@ -65,7 +65,7 @@ export class AuthenticationService {
 
     try {
       const translatedMessage = await firstValueFrom(
-        this.translateService.get(translationKey)
+        this.translateService.selectTranslate(translationKey)
       );
 
       return translationKey === message

@@ -5,7 +5,8 @@ import { GeolocationLanguageModel, getGeolocationTranslation } from '../../model
 import { GeolocationDataModel } from '../../models/geolocation/geolocation-data.model';
 import { NotificationService } from '../notification/notification.service';
 import { GeolocationService } from '../geolocation/geolocation.service';
-import { TranslocoService } from '@ngneat/transloco';
+import { Translation, TranslocoService } from '@ngneat/transloco';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TranslationService {
@@ -38,8 +39,8 @@ export class TranslationService {
     });
   }
 
-  public defineTitle(key: string): void {
-    this.translocoService.selectTranslate(key).subscribe(title => {
+  public defineTitle(key: string, scope?: string): void {
+    this.translocoService.selectTranslate(key, {}, scope).subscribe(title => {
       this.titleService.setTitle(title);
     });
   }
@@ -60,5 +61,9 @@ export class TranslationService {
     this.translocoService.selectTranslate(key).subscribe(translation => {
       this.notificationService.error(errorMessage ? `${translation} ${errorMessage}` : translation);
     });
+  }
+
+  public loadScope(scope: string): Observable<Translation> {
+    return this.translocoService.load(scope);
   }
 }
