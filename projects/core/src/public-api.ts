@@ -12,6 +12,7 @@ export * from './lib/services/notification/components/success/success.component'
 export * from './lib/services/notification/components/warning/warning.component';
 export * from './lib/services/notification/components/error/error.component';
 export * from './lib/components/loading-spinner/loading-spinner.component';
+export * from './lib/components/image-slider/image-slider.component';
 export * from './lib/components/shared-components.module';
 
 export * from './lib/models/geolocation/geolocation-language.model';

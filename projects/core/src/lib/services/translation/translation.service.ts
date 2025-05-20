@@ -45,20 +45,20 @@ export class TranslationService {
     });
   }
 
-  public translateNotificationSuccess(key: string, message?: string): void {
-    this.translocoService.selectTranslate(key).subscribe(translation => {
+  public translateNotificationSuccess(key: string, message?: string, scope?: string): void {
+    this.translocoService.selectTranslate(key, {}, scope).subscribe(translation => {
       this.notificationService.success(message ? `${translation} ${message}` : translation);
     });
   }
 
-  public translateNotificationWarning(key: string): void {
-    this.translocoService.selectTranslate(key).subscribe(translation => {
+  public translateNotificationWarning(key: string, scope?: string): void {
+    this.translocoService.selectTranslate(key, {}, scope).subscribe(translation => {
       this.notificationService.warning(translation);
     });
   }
 
-  public translateNotificationError(key: string, errorMessage?: string): void {
-    this.translocoService.selectTranslate(key).subscribe(translation => {
+  public translateNotificationError(key: string, errorMessage?: string, scope?: string): void {
+    this.translocoService.selectTranslate(key, {}, scope).subscribe(translation => {
       this.notificationService.error(errorMessage ? `${translation} ${errorMessage}` : translation);
     });
   }
