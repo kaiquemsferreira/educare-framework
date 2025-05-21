@@ -1,0 +1,27 @@
+.custom-select-wrapper {
+  width: 100%;
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-left: 1rem;
+  }
+
+  .custom-arrow {
+    position: absolute;
+    top: 57%;
+    right: 2rem;
+    transition: transform 0.3s ease;
+    pointer-events: none;
+    font-size: 1rem;
+  }
+
+  .custom-arrow.rotated {
+    transform: rotate(180deg);
+  }
+}

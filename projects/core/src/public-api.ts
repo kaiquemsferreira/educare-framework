@@ -8,6 +8,7 @@ export * from './lib/services/translation/translation.service';
 export * from './lib/services/notification/notification.service';
 export * from './lib/services/authentication/authentication.service';
 
+export * from './lib/components/single-option-select/single-option-select.component';
 export * from './lib/services/notification/components/success/success.component';
 export * from './lib/services/notification/components/warning/warning.component';
 export * from './lib/services/notification/components/error/error.component';
