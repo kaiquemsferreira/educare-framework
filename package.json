@@ -2,7 +2,7 @@
   "name": "educare-framework",
   "version": "0.0.0",
   "scripts": {
-    "start": "ng serve --proxy-config proxy.config.json --no-live-reload",
+    "start": "ng serve --no-live-reload",
     "build-dev": "rm -rf dist && ng build --configuration dev --outputHashing=all --aot && npm run copy-version-dev",
     "build-hom": "rm -rf dist && ng build --configuration hom --outputHashing=all --aot && npm run copy-version-hom",
     "build-prod": "rm -rf dist && ng build --configuration production && npm run copy-version-prod",
