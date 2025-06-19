@@ -2,14 +2,14 @@ import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar'
 import { Component, Inject } from '@angular/core';
 
 @Component({
-  selector: 'lib-warning',
+  selector: 'success-notification',
   imports: [],
-  templateUrl: './warning.component.html',
-  styleUrls: ['./warning.component.scss', '../notification-component.scss']
+  templateUrl: './success.component.html',
+  styleUrls: ['./success.component.scss', '../notification-component.scss']
 })
-export class WarningComponent {
+export class SuccessComponent {
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: { message: string },
-              private readonly snackBarRef: MatSnackBarRef<WarningComponent>) { }
+              private readonly snackBarRef: MatSnackBarRef<SuccessComponent>) { }
 
   public closeSnackbar() {
     this.snackBarRef.dismiss();

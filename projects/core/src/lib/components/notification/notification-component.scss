@@ -1,6 +1,6 @@
-$success-color: rgb(91, 225, 168) !default;
-$warning-color: rgb(229, 196, 83) !default;
-$danger-color: rgb(234, 105, 105) !default;
+$success-color: linear-gradient(90deg,rgba(74, 197, 97, 1) 0%, rgba(82, 206, 103, 1) 100%) !default;
+$warning-color: linear-gradient(90deg,rgba(251, 195, 44, 1) 0%, rgba(255, 207, 64, 1) 100%) !default;
+$danger-color:  linear-gradient(90deg,rgba(252, 90, 90, 1) 0%, rgba(252, 90, 90, 1) 100%) !default;
 
 .notification-component {
   overflow-y: hidden;
