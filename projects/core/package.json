@@ -12,6 +12,9 @@
     "jwt-decode": "^4.0.0",
     "rxjs": "^7.8.0"
   },
+  "scripts": {
+    "update-version": "ts-node ../core/src/lib/scripts/version.script.ts"
+  },
   "sideEffects": false,
   "module": "fesm2022/core.mjs",
   "typings": "index.d.ts"
