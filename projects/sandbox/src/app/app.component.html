@@ -1,1 +1,19 @@
-<router-outlet></router-outlet>
+<main>
+  <header>
+    <educare-svg></educare-svg>
+
+    <section>
+      <span>version: {{ frameworkVersion }}</span>
+
+      <button (click)="toggleTheme()" *ngIf="!darkTheme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+
+      <button (click)="toggleTheme()" *ngIf="darkTheme">
+        <i class="fa-solid fa-sun-bright"></i>
+      </button>
+    </section>
+  </header>
+
+  <notification-service-component></notification-service-component>
+</main>

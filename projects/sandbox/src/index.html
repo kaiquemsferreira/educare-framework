@@ -24,6 +24,20 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
+  <script>
+    function getThemeCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    const themeCookie = getThemeCookie('theme');
+    if (themeCookie) {
+      document.body.setAttribute('data-theme', themeCookie);
+    } else {
+      document.body.setAttribute('data-theme', 'dark');
+    }
+  </script>
   <app-root></app-root>
 </body>
 </html>

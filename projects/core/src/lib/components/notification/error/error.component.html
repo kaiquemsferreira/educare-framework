@@ -1,9 +1,27 @@
-<section class="notification-component error-snackbar">
-  <div>
-    <i class="fa-regular fa-exclamation"></i>
-    <span>{{ data.message }}</span>
-  </div>
-  <button class="icon-button" (click)="closeSnackbar()" aria-label="Close Notification">
-    <i class="fa-regular fa-x close-icon" aria-hidden="true"></i>
-  </button>
-</section>
+<main class="notification-component error-snackbar">
+  <section class="notification-section">
+    <div class="notification-text">
+      <div class="icon-wrapper">
+        <div class="icon-circle">
+          <i class="fa-regular fa-xmark"></i>
+        </div>
+      </div>
+
+      <section class="text-section">
+        <h1>{{ data.title }}</h1>
+        <span>{{ data.message }}</span>
+        <a *ngIf="data.link">{{ data.link }}</a>
+      </section>
+    </div>
+
+    <section class="button-section">
+      <div class="line-separator"></div>
+      <button class="icon-button" (click)="closeSnackbar()" aria-label="Close Notification">
+        <i *ngIf="!data.closeButton" class="fa-regular fa-x close-icon" aria-hidden="true"></i>
+        <span *ngIf="data.closeButton">{{ data.closeButton.toUpperCase() }}</span>
+      </button>
+    </section>
+  </section>
+
+  <div class="timeout-bar" [ngStyle]="{ animationDuration: animationDuration + 'ms' }"></div>
+</main>
