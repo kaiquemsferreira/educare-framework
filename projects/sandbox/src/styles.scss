@@ -14,7 +14,7 @@ html, body {
   width: 100%;
   height: 100%;
   transition: background-color 0.5s ease-in-out;
-  font-family: 'Inter', system-ui;
+  font-family: 'Nunito', system-ui;
 }
 
 main {
@@ -22,6 +22,7 @@ main {
 }
 
 button {
+  font-family: 'Nunito', system-ui;
   cursor: pointer;
   background: none;
   border: none;

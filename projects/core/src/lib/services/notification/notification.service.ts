@@ -16,9 +16,11 @@ export class NotificationService {
 
   public showNotification(data: NotificationDataModel, component: any, panelClass: string): void {
     this.snackBar.openFromComponent(component, {
-      data: { data },
-      duration: 5000,
-      panelClass: [panelClass]
+      data,
+      duration: data.duration ?? 5000,
+      panelClass: [panelClass],
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
     });
   }
 

@@ -9,8 +9,11 @@
 
       <section class="text-section">
         <h1>{{ data.title }}</h1>
-        <span>{{ data.message }}</span>
-        <a *ngIf="data.link">{{ data.link }}</a>
+        <span>{{ data.message }}
+          <a *ngIf="data.link" [href]="data.link" target="_blank" rel="noopener noreferrer">
+          {{ data.linkText }}
+          </a>
+        </span>
       </section>
     </div>
 

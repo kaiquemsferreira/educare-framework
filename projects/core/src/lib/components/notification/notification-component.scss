@@ -14,15 +14,22 @@ $border-radius: 0.5rem;
 $font-size: 1.6rem;
 
 .notification-component {
+  display: flex;
+  align-items: center;
+  min-width: 40rem;
+  min-height: 8rem;
+  max-height: 12rem;
+  height: auto;
   border-radius: $border-radius;
   position: relative;
   overflow: hidden;
   font-size: $font-size;
 
   .notification-section {
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: center;
     padding: $notification-padding-y $notification-padding-x;
     gap: 3rem;
 
@@ -35,6 +42,17 @@ $font-size: 1.6rem;
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
+        h1 {
+          font-weight: normal;
+        }
+        span {
+          font-size: 1.4rem;
+          a {
+            cursor: pointer;
+            color: rgba(50, 173, 250, 1);
+            text-decoration: underline;
+          }
+        }
       }
     }
 
@@ -51,7 +69,7 @@ $font-size: 1.6rem;
       .line-separator {
         width: 1px;
         align-self: stretch;
-        margin: -$notification-padding-y 0;
+        margin: (-$notification-padding-y * 5) 0;
       }
     }
   }

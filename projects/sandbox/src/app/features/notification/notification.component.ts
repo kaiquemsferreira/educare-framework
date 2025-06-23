@@ -23,6 +23,8 @@ import { ErrorComponent } from '../../../../../core/src/lib/components/notificat
       provide: MAT_SNACK_BAR_DATA, useValue: {
         title: 'Example',
         message: 'Notification Example.',
+        link: 'https://test/test',
+        linkText: 'Further analysis here.',
         closeButton: 'close'
     }
     },
