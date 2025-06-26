@@ -17,12 +17,16 @@ export class TranslationService {
               private readonly titleService: Title) { }
 
   public initializeLanguage(): void {
-    const cachedLang = localStorage.getItem('userLang');
-    const lang = cachedLang ?? GeolocationLanguageModel.ENGLISH;
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const cachedLang = localStorage.getItem('userLang');
+      const lang = cachedLang ?? GeolocationLanguageModel.ENGLISH;
 
-    this.translocoService.setActiveLang(lang);
-    if (!cachedLang) {
-      this.setLanguageByGeolocation();
+      this.translocoService.setActiveLang(lang);
+      if (!cachedLang) {
+        this.setLanguageByGeolocation();
+      }
+    } else {
+      this.translocoService.setActiveLang(GeolocationLanguageModel.ENGLISH);
     }
   }
 
@@ -31,7 +35,9 @@ export class TranslationService {
       next: (data: GeolocationDataModel) => {
         const userLang = getGeolocationTranslation(data.countryCode);
         this.translocoService.setActiveLang(userLang);
-        localStorage.setItem('userLang', userLang);
+        if (typeof window !== 'undefined' && window.localStorage) {
+          localStorage.setItem('userLang', userLang);
+        }
       },
       error: () => {
         this.translocoService.setActiveLang(GeolocationLanguageModel.ENGLISH);

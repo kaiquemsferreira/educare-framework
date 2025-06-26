@@ -1,11 +1,8 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { AuthCredentialsModel } from '../../models/authentication/auth-credentials.model';
 import { DecodedTokenModel } from '../../models/authentication/decoded-token.model';
-import { TranslocoService } from '@ngneat/transloco';
 import { jwtDecode } from 'jwt-decode';
-import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +10,7 @@ import { firstValueFrom } from 'rxjs';
 export class AuthenticationService {
   private readonly TOKEN_KEY = 'token';
 
-  constructor(private readonly translateService: TranslocoService) { }
+  constructor() { }
 
   public saveToken(token: string): void {
     localStorage.setItem(this.TOKEN_KEY, token);
@@ -58,22 +55,5 @@ export class AuthenticationService {
 
   public clearCredentials(): void {
     localStorage.removeItem(this.TOKEN_KEY);
-  }
-
-  public async handleError(error: HttpErrorResponse, message: string): Promise<string> {
-    const translationKey = message;
-
-    try {
-      const translatedMessage = await firstValueFrom(
-        this.translateService.selectTranslate(translationKey)
-      );
-
-      return translationKey === message
-        ? `${translatedMessage}: ${error.message}`
-        : translatedMessage;
-    } catch (error) {
-      this.clearCredentials();
-      throw error;
-    }
   }
 }

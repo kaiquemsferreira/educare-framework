@@ -5,7 +5,7 @@ import { ConstantMessagesEnum } from '../../enums/constant-messages.enum';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { ApiService } from '../api/api.service';
 
-const API_URL = 'http://ip-api.com/json/?fields=status,message,country,countryCode,regionName,city,timezone,query';
+const API_URL = 'http://ip-api.com/json/?fields=status,message,country,countryCode,currency,regionName,city,timezone';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,7 @@ export class GeolocationService {
         latitude: data.lat,
         longitude: data.lon,
         countryCode: data.countryCode,
+        currency: data.currency
       })),
       catchError(error => {
         const customError = {
