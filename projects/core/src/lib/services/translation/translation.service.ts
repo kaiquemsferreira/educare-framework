@@ -16,17 +16,22 @@ export class TranslationService {
               private readonly translocoService: TranslocoService,
               private readonly titleService: Title) { }
 
-  public initializeLanguage(): void {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      const cachedLang = localStorage.getItem('userLang');
-      const lang = cachedLang ?? GeolocationLanguageModel.ENGLISH;
+  public async initializeApp(): Promise<void> {
+    const cachedLang = localStorage.getItem('userLang');
+    const lang = cachedLang ?? GeolocationLanguageModel.ENGLISH;
 
-      this.translocoService.setActiveLang(lang);
-      if (!cachedLang) {
-        this.setLanguageByGeolocation();
+    if (!cachedLang) {
+      try {
+        const data = await firstValueFrom(this.geolocationService.getGeolocation());
+        const userLang = getGeolocationTranslation(data.countryCode);
+        this.translocoService.setActiveLang(userLang);
+        localStorage.setItem('userLang', userLang);
+      } catch {
+        this.translocoService.setActiveLang(GeolocationLanguageModel.ENGLISH);
+        localStorage.setItem('userLang', GeolocationLanguageModel.ENGLISH);
       }
     } else {
-      this.translocoService.setActiveLang(GeolocationLanguageModel.ENGLISH);
+      this.translocoService.setActiveLang(lang);
     }
   }
 
@@ -35,9 +40,7 @@ export class TranslationService {
       next: (data: GeolocationDataModel) => {
         const userLang = getGeolocationTranslation(data.countryCode);
         this.translocoService.setActiveLang(userLang);
-        if (typeof window !== 'undefined' && window.localStorage) {
-          localStorage.setItem('userLang', userLang);
-        }
+        localStorage.setItem('userLang', userLang);
       },
       error: () => {
         this.translocoService.setActiveLang(GeolocationLanguageModel.ENGLISH);

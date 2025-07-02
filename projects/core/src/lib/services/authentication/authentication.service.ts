@@ -13,11 +13,14 @@ export class AuthenticationService {
   constructor() { }
 
   public saveToken(token: string): void {
-    localStorage.setItem(this.TOKEN_KEY, token);
+    if (token.trim() !== '') {
+      localStorage.setItem(this.TOKEN_KEY, token);
+    }
   }
 
   public getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
+    const token = localStorage.getItem(this.TOKEN_KEY);
+    return typeof token === 'string' ? token : null;
   }
 
   public getCredentials(): AuthCredentialsModel | null {
