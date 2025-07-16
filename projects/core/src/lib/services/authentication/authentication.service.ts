@@ -1,62 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { AuthCredentialsModel } from '../../models/authentication/auth-credentials.model';
-import { DecodedTokenModel } from '../../models/authentication/decoded-token.model';
-import { jwtDecode } from 'jwt-decode';
+import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  private readonly TOKEN_KEY = 'token';
+  constructor(private readonly http: HttpClient) {}
 
-  constructor() { }
-
-  public saveToken(token: string): void {
-    if (token.trim() !== '') {
-      localStorage.setItem(this.TOKEN_KEY, token);
-    }
+  public getCurrentUser(): Observable<AuthCredentialsModel> {
+    return this.http.get<AuthCredentialsModel>('/auth/me', {
+      withCredentials: true
+    });
   }
 
-  public getToken(): string | null {
-    const token = localStorage.getItem(this.TOKEN_KEY);
-    return typeof token === 'string' ? token : null;
-  }
-
-  public getCredentials(): AuthCredentialsModel | null {
-    const token = this.getToken();
-    if (!token) {
-      return null;
-    }
-
-    try {
-      const decodedToken = this.decodeToken(token);
-
-      if (!this.isTokenValid(decodedToken)) {
-        this.clearCredentials();
-        return null;
-      }
-
-      return {
-        email: decodedToken.email,
-        fullName: decodedToken.fullName,
-        token: token
-      };
-    } catch (error) {
-      this.clearCredentials();
-      throw error;
-    }
-  }
-
-  private decodeToken(token: string): DecodedTokenModel {
-    return jwtDecode<DecodedTokenModel>(token);
-  }
-
-  private isTokenValid(decodedToken: DecodedTokenModel): boolean {
-    return decodedToken.exp * 1000 > Date.now();
-  }
-
-  public clearCredentials(): void {
-    localStorage.removeItem(this.TOKEN_KEY);
+  public logout(): Observable<void> {
+    return this.http.post<void>('/auth/logout', {}, {
+      withCredentials: true
+    });
   }
 }

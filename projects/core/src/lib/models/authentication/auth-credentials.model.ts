@@ -1,5 +1,5 @@
-export class AuthCredentialsModel {
-  email: string = '';
-  fullName: string = '';
-  token: string = '';
+export interface AuthCredentialsModel {
+  name: string;
+  email: string;
+  roles: string[];
 }
