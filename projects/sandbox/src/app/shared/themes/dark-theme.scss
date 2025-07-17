@@ -1,0 +1,19 @@
+@use 'sass:map';
+
+$dark-background-colors: (
+  primary-background-color: rgba(21, 21, 21, 1),
+  secondary-background-color: rgba(15, 15, 15, 1),
+  tertiary-background-color: rgba(37, 37, 37, 1),
+  quaternary-background-color: rgba(17, 17, 17, 0.15),
+);
+
+$dark-font-colors: (
+  primary-font-color: rgba(253, 253, 253, 1),
+  secondary-font-color: rgba(165, 165, 165, 1),
+  tertiary-font-color: rgba(127, 127, 127, 1),
+);
+
+$dark-gradient-color: linear-gradient(90deg, rgba(36, 61, 110, 1) 0%, rgba(60, 93, 196, 1) 100%);
+$dark-button-disabled-background-color: rgba(55, 55, 62, 1);
+$dark-outline-border-color: rgba(171, 217, 254, 1);
+$dark-router-link-color: rgba(147, 199, 227, 1);

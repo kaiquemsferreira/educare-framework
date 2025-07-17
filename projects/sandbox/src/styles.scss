@@ -1,3 +1,16 @@
+@use "dark-theme";
+@use 'sass:map';
+
+$primary-font-settings: (
+  primary-font-family: ('Nunito', system-ui),
+  primary-font-size: 2.4rem,
+);
+
+$secondary-font-settings: (
+  secondary-font-family: ('Work Sans', system-ui),
+  secondary-font-size: 1.6rem,
+);
+
 $default-opening-animation: ease-in fade-in 0.5s;
 
 * {
@@ -14,15 +27,24 @@ html, body {
   width: 100%;
   height: 100%;
   transition: background-color 0.5s ease-in-out;
-  font-family: 'Nunito', system-ui;
 }
 
 main {
   animation: $default-opening-animation;
 }
 
+h1, h2, h3, h4, h5, h6,
 button {
-  font-family: 'Nunito', system-ui;
+  font-family: map.get($primary-font-settings, primary-font-family);
+  font-size: map.get($primary-font-settings, primary-font-size);
+}
+.form-input, input, a, span, p, select,
+textarea, strong, label {
+  font-family: map.get($secondary-font-settings, secondary-font-family);
+  font-size: map.get($secondary-font-settings, secondary-font-size);
+}
+
+button {
   cursor: pointer;
   background: none;
   border: none;
@@ -37,14 +59,14 @@ educare-svg {
 }
 
 body[data-theme='dark'] {
-  background: rgba(21, 21, 21, 1);
+  background: map.get(dark-theme.$dark-background-colors, primary-background-color);
 
   educare-svg {
     filter: brightness(0) invert(1);
   }
 
   i, span, h1 {
-    color: rgba(242, 243, 247, 1);
+    color: map.get(dark-theme.$dark-font-colors, primary-font-color);
   }
 }
 
