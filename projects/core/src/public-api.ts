@@ -13,6 +13,7 @@ export * from './lib/components/notification/success/success.component';
 export * from './lib/components/notification/warning/warning.component';
 export * from './lib/components/notification/error/error.component';
 export * from './lib/components/loading-spinner/loading-spinner.component';
+export * from './lib/components/radio-button/radio-button.component';
 
 export * from './lib/models/geolocation/geolocation-language.model';
 export * from './lib/models/geolocation/geolocation-data.model';

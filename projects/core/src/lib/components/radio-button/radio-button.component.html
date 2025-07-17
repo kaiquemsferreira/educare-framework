@@ -1,0 +1,15 @@
+<main class="radio-button-component">
+  <input type="radio" id="radio1" name="plan" />
+  <label for="radio1" class="custom-radio">
+    <span class="custom-radio-indicator"></span>
+
+    <div class="radio-button-content">
+      <section class="text-section">
+        <h1>{{ title }}</h1>
+        <span>{{ text }}</span>
+      </section>
+
+      <span class="radio-button-tag" *ngIf="tag">{{ tag }}</span>
+    </div>
+  </label>
+</main>

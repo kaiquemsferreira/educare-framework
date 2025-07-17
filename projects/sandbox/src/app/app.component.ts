@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 import { EducareSvgComponent } from './shared/components/educare-svg/educare-svg.component';
-import { version } from '../../../core/src/lib/config/version';
-import { NgIf } from '@angular/common';
 import { NotificationComponent } from './features/notification/notification.component';
+import { RadioButtonComponent } from '../../../core/src/lib/components/radio-button/radio-button.component';
+import { version } from '../../../core/src/lib/config/version';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ import { NotificationComponent } from './features/notification/notification.comp
   imports: [
     EducareSvgComponent,
     NgIf,
-    NotificationComponent
+    NotificationComponent,
+    RadioButtonComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
