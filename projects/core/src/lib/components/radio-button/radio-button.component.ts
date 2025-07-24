@@ -1,8 +1,8 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'radio-button-component',
+  selector: 'radio-button',
   imports: [
     NgIf
   ],
@@ -12,7 +12,17 @@ import { NgIf } from '@angular/common';
   encapsulation: ViewEncapsulation.None
 })
 export class RadioButtonComponent {
-  @Input() title: string = 'Example';
-  @Input() text: string = '$16 / Month / Member';
-  @Input() tag: string = 'save 10%';
+  @Input() title: string = '';
+  @Input() text: string = '';
+  @Input() tag: string = '';
+
+  @Input() value: string = '';
+  @Input() name: string = 'radio-group';
+  @Input() checked: boolean = false;
+
+  @Output() onChange = new EventEmitter<string>();
+
+  get inputId(): string {
+    return `radio-${this.value}`;
+  }
 }

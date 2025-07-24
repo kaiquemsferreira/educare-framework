@@ -1,6 +1,8 @@
 <main class="radio-button-component">
-  <input type="radio" id="radio1" name="plan" />
-  <label for="radio1" class="custom-radio">
+  <input type="radio" [id]="inputId" [name]="name" [value]="value"
+         [checked]="checked" (change)="onChange.emit(value)"/>
+
+  <label [for]="inputId" class="custom-radio">
     <span class="custom-radio-indicator"></span>
 
     <div class="radio-button-content">
@@ -9,7 +11,10 @@
         <span>{{ text }}</span>
       </section>
 
-      <span class="radio-button-tag" *ngIf="tag">{{ tag }}</span>
+      <span class="radio-button-tag" *ngIf="tag; else emptyTag">{{ tag }}</span>
+      <ng-template #emptyTag>
+        <span class="radio-button-tag invisible">placeholder</span>
+      </ng-template>
     </div>
   </label>
 </main>

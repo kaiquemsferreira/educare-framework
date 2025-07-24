@@ -4,8 +4,9 @@
 @use 'sass:map';
 
 main.radio-button-component {
-  width: fit-content;
-  max-width: 41.3rem;
+  width: 100%;
+  max-width: 50rem;
+  height: fit-content;
   input[type="radio"] {
     display: none;
   }
@@ -19,10 +20,10 @@ main.radio-button-component {
     border: 1px solid transparent;
     width: 100%;
     cursor: pointer;
-    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    transition: ease-in-out all 0.2s;
 
     &:hover {
-      transform: scale(1.01);
+      box-shadow: 0 0 0 1px rgba(94, 164, 244, 0.2);
     }
 
     .custom-radio-indicator {
@@ -55,6 +56,11 @@ main.radio-button-component {
     .text-section {
       display: flex;
       flex-direction: column;
+
+      span {
+        font-size: 1.14rem;
+        opacity: 0.5;
+      }
     }
 
     .radio-button-tag {
@@ -63,6 +69,9 @@ main.radio-button-component {
       white-space: nowrap;
       color: white;
       font-size: 1.2rem;
+    }
+    .radio-button-tag.invisible {
+      visibility: hidden;
     }
   }
 }
