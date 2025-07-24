@@ -23,7 +23,6 @@ export class AuthenticationService {
     }
   }
 
-
   public logout(): Observable<void> {
     return this.http.post<void>('/auth/logout', {}, {
       withCredentials: true
