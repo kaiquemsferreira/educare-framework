@@ -19,12 +19,9 @@ import { NotificationDataModel } from '../../../models/notification/notification
   encapsulation: ViewEncapsulation.None
 })
 export class SuccessComponent {
-  public animationDuration = 5000;
 
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: NotificationDataModel,
-              private readonly snackBarRef: MatSnackBarRef<SuccessComponent>) {
-    this.animationDuration = data.duration ?? 5000;
-  }
+              private readonly snackBarRef: MatSnackBarRef<SuccessComponent>) { }
 
   public closeSnackbar(): void {
     this.snackBarRef.dismiss();

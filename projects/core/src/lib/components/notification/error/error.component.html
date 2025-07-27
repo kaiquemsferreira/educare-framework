@@ -10,7 +10,7 @@
       <section class="text-section">
         <h1>{{ data.title }}</h1>
         <span>{{ data.message }}
-          <a *ngIf="data.link" [href]="data.link" target="_blank" rel="noopener noreferrer">
+          <a *ngIf="data.link" [href]="data.link" [target]="data.target" rel="noopener noreferrer">
           {{ data.linkText }}
           </a>
         </span>
@@ -26,5 +26,5 @@
     </section>
   </section>
 
-  <div class="timeout-bar" [ngStyle]="{ animationDuration: animationDuration + 'ms' }"></div>
+  <div class="timeout-bar" [ngStyle]="{ animationDuration: data.duration + 'ms' }"></div>
 </main>

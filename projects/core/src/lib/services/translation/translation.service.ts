@@ -76,14 +76,14 @@ export class TranslationService {
   }
 
   private async buildNotificationData(data: NotificationDataModel): Promise<NotificationDataModel> {
-    const [title, message, link, closeButton] = await Promise.all([
+    const [title, message, linkText, closeButton] = await Promise.all([
       firstValueFrom(this.translocoService.selectTranslate(data.title, {}, data.scope)),
       data.message ? firstValueFrom(this.translocoService.selectTranslate(data.message, {}, data.scope)) : Promise.resolve(''),
-      data.link ? firstValueFrom(this.translocoService.selectTranslate(data.link, {}, data.scope)) : Promise.resolve(''),
+      data.linkText ? firstValueFrom(this.translocoService.selectTranslate(data.linkText, {}, data.scope)) : Promise.resolve(''),
       data.closeButton ? firstValueFrom(this.translocoService.selectTranslate(data.closeButton, {}, data.scope)) : Promise.resolve('')
     ]);
 
-    return { title, message, link, closeButton, duration: data.duration};
+    return { title, message, link: data.link, linkText, target: data.target ?? '_blank', closeButton, duration: data.duration ?? 5000};
   }
 
 

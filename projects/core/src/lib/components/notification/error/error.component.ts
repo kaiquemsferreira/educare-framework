@@ -15,11 +15,9 @@ import { NotificationDataModel } from '../../../models/notification/notification
   encapsulation: ViewEncapsulation.None
 })
 export class ErrorComponent {
-  public animationDuration = 5000;
+
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: NotificationDataModel,
-              private readonly snackBarRef: MatSnackBarRef<ErrorComponent>) {
-    this.animationDuration = data.duration ?? 5000;
-  }
+              private readonly snackBarRef: MatSnackBarRef<ErrorComponent>) { }
 
   public closeSnackbar() {
     this.snackBarRef.dismiss();

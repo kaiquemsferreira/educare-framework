@@ -5,5 +5,6 @@ export interface NotificationDataModel {
   linkText?: string;
   duration?: number;
   closeButton?: string;
+  target?: string;
   scope?: string;
 }
