@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { AuthCredentialsModel } from '../../models/authentication/auth-credentials.model';
-import { firstValueFrom, Observable } from 'rxjs';
+import { catchError, firstValueFrom, Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -15,12 +15,11 @@ export class AuthenticationService {
   }
 
   public async isAuthenticated(): Promise<boolean> {
-    try {
-      const user = await firstValueFrom(this.getCurrentUser());
-      return !!user;
-    } catch {
-      return false;
-    }
+    return await firstValueFrom(
+      this.getCurrentUser().pipe(
+        catchError(() => of(null))
+      )
+    ).then(user => !!user);
   }
 
   public logout(): Observable<void> {
