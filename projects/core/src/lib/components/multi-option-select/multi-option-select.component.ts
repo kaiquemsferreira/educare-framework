@@ -8,15 +8,12 @@ import {
   Output,
   ViewChild, ViewEncapsulation
 } from '@angular/core';
-import { NgForOf, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'multi-option-select',
   imports: [
-    NgIf,
-    NgForOf,
     FormsModule
   ],
   templateUrl: './multi-option-select.component.html',
@@ -37,9 +34,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 export class MultiOptionSelectComponent implements AfterViewInit {
   @Input() options: any[] = [
     { label: 'United States', value: 'us' },
-    { label: 'United Kingdom', value: 'uk' },
-    { label: 'United States', value: 'us2' },
-    { label: 'United Kingdom', value: 'uk2' }
+    { label: 'United Kingdom', value: 'uk' }
   ];
   @Input() addOptionCondition!: (term: string, options: any[]) => boolean;
   @Output() createOption = new EventEmitter<string>();
@@ -50,7 +45,6 @@ export class MultiOptionSelectComponent implements AfterViewInit {
   get showPlaceholder(): boolean {
     return this.searchTerm.length === 0 && this.selectedOptions.length === 0;
   }
-
 
   selectedOptions: any[] = [];
   filteredOptions: any[] = [];

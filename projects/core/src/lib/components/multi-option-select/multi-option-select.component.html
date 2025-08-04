@@ -1,50 +1,57 @@
 <div class="multi-select-container" #container>
   <div class="input-container">
-    <div class="selected-tags" *ngIf="!isCollapsed">
-      <ng-container *ngIf="selectedOptions.length <= 1">
-        <span class="tag" *ngFor="let item of selectedOptions">
-          {{ item.label }}
-          <button (click)="removeOption(item)">
-            <i class="fa-regular fa-xmark"></i>
-          </button>
-        </span>
-      </ng-container>
-
-      <ng-container *ngIf="selectedOptions.length > 1">
-        <span class="tag">
-          {{ selectedOptions.length }} {{ optionsText }}
-          <button (click)="clearAll()">
-            <i class="fa-regular fa-xmark"></i>
-          </button>
-        </span>
-      </ng-container>
-    </div>
+    @if (!isCollapsed) {
+      <div class="selected-tags">
+        @if (selectedOptions.length <= 1) {
+          @for (item of selectedOptions; track item) {
+            <span class="tag">
+              {{ item.label }}
+              <button (click)="removeOption(item)">
+                <i class="fa-regular fa-xmark"></i>
+              </button>
+            </span>
+          }
+        } @else {
+          <span class="tag">
+            {{ selectedOptions.length }} {{ optionsText }}
+            <button (click)="clearAll()">
+              <i class="fa-regular fa-xmark"></i>
+            </button>
+          </span>
+        }
+      </div>
+    }
 
     <input type="text" [(ngModel)]="searchTerm" (focus)="isOpen = true" aria-label="Select one or more options"
            (input)="filterOptions()" [placeholder]="showPlaceholder ? placeholder : ''"/>
-    <span class="arrow" (click)="toggleDropdown()">
+    <span class="arrow" (click)="toggleDropdown()" [class.open]="isOpen">
       <i class="fa-regular fa-angle-down"></i>
     </span>
   </div>
 
-  <div class="dropdown" *ngIf="isOpen" @fadeDropdown>
-    <div *ngFor="let option of filteredOptions" class="option"
-         (click)="toggleSelection(option)">
-      <label class="custom-checkbox">
-        <input type="checkbox" [checked]="isSelected(option)" (click)="$event.stopPropagation()"/>
-        <span class="checkmark"></span>
-        <span>{{ option.label }}</span>
-      </label>
-    </div>
+  @if (isOpen) {
+    <div class="dropdown" @fadeDropdown>
+      @for (option of filteredOptions; track option) {
+        <div class="option" (click)="toggleSelection(option)">
+          <label class="custom-checkbox">
+            <input type="checkbox" [checked]="isSelected(option)" (click)="$event.stopPropagation()"/>
+            <span class="checkmark"></span>
+            <span>{{ option.label }}</span>
+          </label>
+        </div>
+      }
 
-    <div class="new-option" *ngIf="canShowAddOption">
-      <input class="new-option-input" type="text" [placeholder]="newOptionPlaceholder"
-             [(ngModel)]="newOptionTerm" (keyup.enter)="addNewOption()"/>
+      @if (canShowAddOption) {
+        <div class="new-option">
+          <input class="new-option-input" type="text" [placeholder]="newOptionPlaceholder"
+                 [(ngModel)]="newOptionTerm" (keyup.enter)="addNewOption()"/>
 
-      <button class="add-button" (click)="addNewOption()" [disabled]="!newOptionTerm.trim()"
-              aria-label="Create new option">
-        <i class="fa-regular fa-angles-right"></i>
-      </button>
+          <button class="add-button" (click)="addNewOption()" [disabled]="!newOptionTerm.trim()"
+                  aria-label="Create new option">
+            <i class="fa-regular fa-angles-right"></i>
+          </button>
+        </div>
+      }
     </div>
-  </div>
+  }
 </div>
