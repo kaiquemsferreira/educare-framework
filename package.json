@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "start": "npm run generate-core-version && ng serve --no-live-reload",
-    "build": "rm -rf dist && ng build --configuration production && npm run copy-version-prod",
+    "build": "run generate-core-version && rm -rf dist && ng build --configuration production && npm run copy-version-prod",
     "copy-version-prod": "node copy-package.js && node version.js",
     "publish:prod-version": "npm run publish:checkout-prod && npm run release:fetch-tags && npm run publish:version && npm run release:push-tags && npm run build-prod && npm run release:perform",
     "publish:prod-version-minor": "npm run publish:checkout-prod && npm run release:fetch-tags && npm run publish:version-minor && npm run release:push-tags && npm run build-prod && npm run release:perform",

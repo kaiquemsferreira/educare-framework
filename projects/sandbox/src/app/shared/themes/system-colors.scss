@@ -1,5 +1,18 @@
 $primary-color: rgba(80, 119, 208, 1) !default;
+$secondary-color: rgba(52, 79, 138, 1) !default;
 $success-color: rgba(49, 255, 84, 1) !default;
 $warning-color: rgba(255, 207, 64, 1) !default;
 $error-color: rgba(255, 76, 76, 1) !default;
 $gray-color: rgba(50, 50, 52, 1) !default;
+
+.text-warning {
+  color: $warning-color !important;
+}
+
+.text-success {
+  color: $success-color !important;
+}
+
+.text-error {
+  color: $error-color !important;
+}

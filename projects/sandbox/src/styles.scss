@@ -1,17 +1,19 @@
+@use "light-theme";
 @use "dark-theme";
 @use 'sass:map';
 
 $primary-font-settings: (
-  primary-font-family: ('Nunito', system-ui),
-  primary-font-size: 2.4rem,
+    primary-font-family: ('Inter', system-ui),
+    primary-font-size: 2.4rem,
 );
 
 $secondary-font-settings: (
-  secondary-font-family: ('Work Sans', system-ui),
-  secondary-font-size: 1.6rem,
+    secondary-font-family: ('Atlassian Sans', system-ui),
+    secondary-font-size: 1.6rem,
 );
 
-$default-opening-animation: ease-in fade-in 0.5s;
+$default-border-radius: 0.5rem;
+$default-opening-animation: ease-in fade-in 0.8s;
 
 * {
   margin: 0;
@@ -50,6 +52,12 @@ button {
   border: none;
 }
 
+.form-input, input, select, .input-container {
+  width: 100%;
+  border: none;
+  border-radius: $default-border-radius;
+}
+
 i {
   transition: color 0.5s ease-in-out;
 }
@@ -58,20 +66,8 @@ educare-svg {
   transition: filter 0.5s ease-in-out;
 }
 
-body[data-theme='dark'] {
-  background: map.get(dark-theme.$dark-background-colors, primary-background-color);
-
-  educare-svg {
-    filter: brightness(0) invert(1);
-  }
-
-  i, span, h1 {
-    color: map.get(dark-theme.$dark-font-colors, primary-font-color);
-  }
-}
-
 body[data-theme='light'] {
-  background: rgba(242, 243, 247, 1);
+  background: map.get(light-theme.$light-background-colors, primary-background-color);
 
   educare-svg {
     filter: brightness(0) invert(0);
@@ -82,9 +78,37 @@ body[data-theme='light'] {
   }
 }
 
+body[data-theme='dark'] {
+  background: map.get(dark-theme.$dark-background-colors, primary-background-color);
+  color: map.get(dark-theme.$dark-font-colors, primary-font-color);
+
+  educare-svg {
+    filter: brightness(0) invert(1);
+  }
+
+  i, span, h1, input {
+    color: map.get(dark-theme.$dark-font-colors, primary-font-color);
+  }
+
+  input, .input-container {
+    background: map.get(dark-theme.$dark-background-colors, tertiary-background-color);
+    border: 1px solid dark-theme.$dark-gray-color;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .form-input, input, select {
+    padding: 0.6rem;
+  }
+}
+
 @media only screen and (min-width: 1025px) {
   educare-svg svg {
     width: 16rem;
+  }
+
+  .form-input, input, select {
+    padding: 1.2rem 0.6rem;
   }
 }
 

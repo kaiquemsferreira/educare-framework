@@ -1,0 +1,185 @@
+@use "../../../../../sandbox/src/app/shared/themes/system-colors";
+@use "../../../../../sandbox/src/app/shared/themes/light-theme";
+@use "../../../../../sandbox/src/app/shared/themes/dark-theme";
+@use 'sass:map';
+
+.dropdown, .option, .new-option {
+  width: 100%;
+}
+
+.multi-select-container {
+  position: relative;
+  width: 30rem;
+
+  .input-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+
+    input {
+      flex: 1;
+      border: none;
+      outline: none;
+    }
+
+    .selected-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      .tag {
+        border-radius: 0.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0 1.1rem;
+
+        button {
+          border: none;
+          background: none;
+          margin-left: 0.5rem;
+          cursor: pointer;
+        }
+
+        i {
+          font-size: 1.6rem;
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+
+    .arrow {
+      position: absolute;
+      right: 2rem;
+      cursor: pointer;
+    }
+  }
+
+  .dropdown {
+    position: absolute;
+    top: calc(100% - 0.25rem);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-top: none;
+    border-radius: 0 0  0.5rem 0.5rem;
+
+    .custom-checkbox {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      gap: 0.5rem;
+
+      input[type="checkbox"] {
+        display: none;
+      }
+
+      .checkmark {
+        width: 1.8rem;
+        height: 1.8rem;
+        display: inline-block;
+        border: 1.25px solid system-colors.$gray-color;
+        border-radius: 0.5rem;
+        position: relative;
+        transition: all 0.15s ease-in-out;
+        background-color: transparent;
+      }
+
+      input:checked + .checkmark {
+        background-color: system-colors.$primary-color;
+        border-color: system-colors.$primary-color;
+      }
+
+      input:checked + .checkmark::after {
+        content: "";
+        position: absolute;
+        left: 0.4rem;
+        top: 0;
+        width: 0.5rem;
+        height: 1rem;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+
+      input:indeterminate + .checkmark {
+        background-color: system-colors.$primary-color;
+        border-color: system-colors.$primary-color;
+      }
+
+      input:indeterminate + .checkmark::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0.9rem;
+        height: 0.2rem;
+        background: white;
+        transform: translate(-50%, -50%);
+        border: none;
+      }
+
+      input:not(:checked):not(:indeterminate) + .checkmark:hover {
+        background: rgba(245, 245, 245, 0.025);
+      }
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      white-space: nowrap;
+      padding: 1rem;
+    }
+
+    .new-option {
+      position: relative;
+      padding: 1rem;
+
+      .add-button {
+        position: absolute;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        display: flex;
+
+        i {
+          font-size: 1.8rem;
+        }
+
+        &:disabled {
+          opacity: 0.4;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
+
+body[data-theme = 'dark'] {
+  background: map.get(dark-theme.$dark-background-colors, primary-background-color);
+  border: 1px solid dark-theme.$dark-gray-color;
+
+  .input-container {
+    .tag {
+      background: system-colors.$primary-color;
+    }
+  }
+
+  .dropdown {
+    background: map.get(dark-theme.$dark-background-colors, tertiary-background-color);
+    border: 1px solid dark-theme.$dark-gray-color;
+    .option {
+      border-bottom: 1px solid dark-theme.$dark-gray-color;
+    }
+
+    .new-option {
+      .add-button {
+        background: map.get(dark-theme.$dark-background-colors, quaternary-background-color);
+      }
+    }
+  }
+}

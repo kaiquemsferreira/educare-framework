@@ -5,6 +5,9 @@ import { EducareSvgComponent } from './shared/components/educare-svg/educare-svg
 import { NotificationComponent } from './features/notification/notification.component';
 import { RadioButtonComponent } from '../../../core/src/lib/components/radio-button/radio-button.component';
 import { version } from '../../../core/src/lib/config/version';
+import {
+  MultiOptionSelectComponent
+} from '../../../core/src/lib/components/multi-option-select/multi-option-select.component';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +16,8 @@ import { version } from '../../../core/src/lib/config/version';
     EducareSvgComponent,
     NgIf,
     NotificationComponent,
-    RadioButtonComponent
+    RadioButtonComponent,
+    MultiOptionSelectComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
