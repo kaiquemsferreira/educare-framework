@@ -14,8 +14,9 @@
         <div class="text-container">
           <p>
             @if (!isDragging) {
-              {{ mainText }}, or
-              <span class="browse" (click)="fileInput.click(); $event.stopPropagation()">browse</span>
+              {{ mainText }},
+              {{ orText }}
+              <span class="browse" (click)="fileInput.click(); $event.stopPropagation()">{{ browseText }}</span>
             } @else {
               {{ mainText }}
             }

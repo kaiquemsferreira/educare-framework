@@ -36,10 +36,18 @@ export class FileUploaderComponent {
   private deleteUrl: string | null = null;
   private xhr: XMLHttpRequest | null = null;
   protected uploadedUrlTemp: string | null = null;
+  @Input() mainTextMap?: Partial<Record<'image' | 'document' | 'compressed' | 'avatar', string>>;
+  @Input() supportTextMap?: Partial<Record<'image' | 'document' | 'compressed' | 'avatar', string>>;
+  @Input() orText = 'or';
+  @Input() browseText = 'browse';
 
-  constructor(private readonly dialog: MatDialog) { }
-
-  get acceptedMimeTypes(): string {
+  protected get mainText(): string {
+    return this.mainTextMap?.[this.fileType] ?? this.getDefaultMainText();
+  }
+  protected get supportText(): string {
+    return this.supportTextMap?.[this.fileType] ?? this.getDefaultSupportText();
+  }
+  protected get acceptedMimeTypes(): string {
     switch (this.fileType) {
       case 'document':
         return '.pdf,.doc,.docx,.txt,.xls,.xlsx';
@@ -50,23 +58,7 @@ export class FileUploaderComponent {
     }
   }
 
-  get mainText(): string {
-    switch (this.fileType) {
-      case 'document': return 'Drop your documents here';
-      case 'compressed': return 'Drop your archives here';
-      case 'avatar': return 'Drop your photo here';
-      default: return 'Drop your image here';
-    }
-  }
-
-  get supportText(): string {
-    switch (this.fileType) {
-      case 'document': return 'Supports: PDF, DOC, DOCX, TXT, XLS';
-      case 'compressed': return 'Supports: ZIP, RAR, 7Z, TAR.GZ';
-      case 'avatar': return 'Supports: PNG, JPG';
-      default: return 'Supports: PNG, JPG, JPEG, WEBP';
-    }
-  }
+  constructor(private readonly dialog: MatDialog) { }
 
   public onFileSelected(event: Event): void {
     const file = (event.target as HTMLInputElement).files?.[0];
@@ -218,5 +210,23 @@ export class FileUploaderComponent {
     this.uploadedUrlTemp = null;
     this.isPaused = false;
     this.isDragging = false;
+  }
+
+  private getDefaultMainText(): string {
+    switch (this.fileType) {
+      case 'document': return 'Drop your documents here';
+      case 'compressed': return 'Drop your archives here';
+      case 'avatar': return 'Drop your photo here';
+      default: return 'Drop your image here';
+    }
+  }
+
+  private getDefaultSupportText(): string {
+    switch (this.fileType) {
+      case 'document': return 'Supports: PDF, DOC, DOCX, TXT, XLS';
+      case 'compressed': return 'Supports: ZIP, RAR, 7Z, TAR.GZ';
+      case 'avatar': return 'Supports: PNG, JPG';
+      default: return 'Supports: PNG, JPG, JPEG, WEBP';
+    }
   }
 }
