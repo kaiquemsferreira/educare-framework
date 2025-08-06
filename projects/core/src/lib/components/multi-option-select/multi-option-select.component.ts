@@ -4,8 +4,8 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
-  Input,
-  Output,
+  Input, OnChanges,
+  Output, SimpleChanges,
   ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -31,7 +31,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
     ])
   ]
 })
-export class MultiOptionSelectComponent implements AfterViewInit {
+export class MultiOptionSelectComponent implements AfterViewInit, OnChanges {
   @Input() options: any[] = [
     { label: 'United States', value: 'us' },
     { label: 'United Kingdom', value: 'uk' }
@@ -45,7 +45,6 @@ export class MultiOptionSelectComponent implements AfterViewInit {
   get showPlaceholder(): boolean {
     return this.searchTerm.length === 0 && this.selectedOptions.length === 0;
   }
-
   selectedOptions: any[] = [];
   filteredOptions: any[] = [];
   searchTerm = '';
@@ -57,6 +56,12 @@ export class MultiOptionSelectComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.filteredOptions = [...this.options];
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['options'].currentValue) {
+      this.filteredOptions = [...this.options];
+    }
   }
 
   public toggleDropdown() {

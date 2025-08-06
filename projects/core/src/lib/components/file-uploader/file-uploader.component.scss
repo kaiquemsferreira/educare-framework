@@ -1,0 +1,215 @@
+@use "../../../../../sandbox/src/app/shared/themes/system-colors";
+@use "../../../../../sandbox/src/app/shared/themes/light-theme";
+@use "../../../../../sandbox/src/app/shared/themes/dark-theme";
+@use "sass:color";
+@use 'sass:map';
+
+.upload-modal {
+  padding: 3rem;
+  width: fit-content;
+  border-radius: 0.5rem;
+
+  &.avatar {
+    padding: 0;
+
+    .drop-zone {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      padding: 1rem 2rem;
+      justify-content: center;
+      text-align: start;
+
+      .text-container {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  button {
+    border: 1px solid;
+    border-radius: 0.5rem;
+    width: 6.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.2rem;
+    font-size: 1.4rem;
+  }
+
+  .drop-zone {
+    border: 2px dashed;
+    border-radius: 0.5rem;
+    text-align: center;
+    padding: 4rem 2rem;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.25s ease-in-out;
+
+    .browse {
+      color: #3182ce;
+      cursor: pointer;
+    }
+
+    .sub {
+      font-size: 1.2rem;
+    }
+
+    .file-preview {
+      position: relative;
+
+      img {
+        max-width: 10rem;
+        margin: 0 auto;
+        display: block;
+      }
+    }
+  }
+
+  .preview-area {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+
+    padding: 1.25rem;
+    border: 1px solid;
+    border-radius: 0.5rem;
+
+    .preview-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .preview-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        img {
+          border-radius: 0.5rem;
+        }
+
+        .file-info {
+          .file-name {
+            font-size: 1.2rem;
+          }
+
+          .file-size {
+            font-size: 1rem;
+            opacity: 0.5;
+          }
+        }
+      }
+
+      .progress-actions-buttons {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        .pause-button, .cancel-button {
+          border-radius: 50%;
+          width: fit-content;
+          background: rgba(220, 221, 255, 0.06);
+        }
+
+        .pause-button {
+          padding: 0.5rem 0.8rem;
+        }
+
+        .cancel-button {
+          padding: 0.5rem 0.7rem;
+          i {
+            color: system-colors.$error-color;
+          }
+        }
+      }
+
+      .success {
+        i {
+          font-size: 1.6rem;
+          color: system-colors.$success-color;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .progress-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+      gap: 1rem;
+
+      progress {
+        width: 100%;
+      }
+
+      span {
+        font-size: 1.1rem;
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .upload-actions {
+    margin-top: 2rem;
+
+    h3 {
+      font-size: 1.6rem;
+      font-weight: normal;
+    }
+    .import-url {
+      margin-top: 1.6rem;
+      display: flex;
+      gap: 2rem;
+
+      input {
+        height: 3.5rem;
+      }
+    }
+
+    .actions {
+      margin-top: 24px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 2rem;
+    }
+  }
+}
+
+
+body[data-theme = 'dark'] {
+  .upload-modal {
+
+    &.avatar {
+      .drop-zone {
+        .avatar-icon {
+          i {
+            background: map.get(dark-theme.$dark-background-colors, tertiary-background-color);
+          }
+        }
+      }
+    }
+
+    background: map.get(dark-theme.$dark-background-colors, tertiary-background-color);
+    button {
+      color: map.get(dark-theme.$dark-font-colors, primary-font-color);
+      border-color: dark-theme.$dark-gray-color;
+    }
+    .drop-zone {
+      border-color: dark-theme.$dark-gray-color;
+
+      .sub {
+        color: map.get(dark-theme.$dark-font-colors, tertiary-font-color);
+      }
+
+      &.dragging {
+        border-color: system-colors.$primary-color;
+        background: color.change(system-colors.$primary-color, $alpha: 0.15);
+      }
+    }
+
+    .preview-area {
+      border-color: system-colors.$gray-color;
+    }
+  }
+}

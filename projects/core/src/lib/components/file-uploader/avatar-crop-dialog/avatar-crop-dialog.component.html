@@ -1,0 +1,19 @@
+<div class="avatar-crop-dialog">
+  <image-cropper #cropper [imageFile]="data.file" [maintainAspectRatio]="true"
+                 [aspectRatio]="1" [resizeToWidth]="300" format="png" [roundCropper]="true"
+                 [transform]="transform" [cropperMinWidth]="150"
+                 [cropperMinHeight]="150" (imageCropped)="onCrop($event)">
+  </image-cropper>
+
+  <div class="action-buttons">
+    <div class="zoom-slider">
+      <input type="range" id="zoomRange" min="1" max="3" step="0.01"
+             [(ngModel)]="zoom" (ngModelChange)="updateZoom($event)"/>
+    </div>
+
+    <div class="dialog-actions">
+      <button (click)="cancel()" class="primary-button">{{ cancelButton }}</button>
+      <button (click)="confirmCrop()" [disabled]="!croppedFile" class="primary-button">{{ confirmButton }}</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="upload-modal" [class.avatar]="fileType === 'avatar'">
+  <div class="drop-zone" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
+       (drop)="onDrop($event)" [class.dragging]="isDragging">
+
+      <ng-container>
+        @if (fileType === 'image') {
+          <img ngSrc="https://i.ibb.co/SwSPPwc1/image.png" alt="Upload icon" width="60" height="60"/>
+        } @else if (fileType === 'avatar') {
+          <img ngSrc="https://i.ibb.co/XZMkb53B/user.png" alt="Avatar icon" width="60" height="60"/>
+        } @else {
+          <img ngSrc="https://i.ibb.co/SXpdRQH2/folder.png" alt="Upload icon" width="60" height="60"/>
+        }
+
+        <div class="text-container">
+          <p>
+            @if (!isDragging) {
+              {{ mainText }}, or
+              <span class="browse" (click)="fileInput.click(); $event.stopPropagation()">browse</span>
+            } @else {
+              {{ mainText }}
+            }
+          </p>
+
+          <p class="sub">{{ supportText }}</p>
+        </div>
+      </ng-container>
+
+    <input type="file" hidden (change)="onFileSelected($event)" [accept]="acceptedMimeTypes" #fileInput/>
+  </div>
+
+  @if (fileType !== 'avatar') {
+    @if (file) {
+      <div class="preview-area">
+        <div class="preview-content">
+          <div class="preview-wrapper">
+            @if (fileType === 'image' && imagePreview) {
+              <img [src]="imagePreview" width="30" height="30" alt="Preview"/>
+            } @else {
+              <img ngSrc="https://i.ibb.co/SXpdRQH2/folder.png" width="40" height="40" alt="Preview"/>
+            }
+
+            <div class="file-info">
+              <p class="file-name">{{ file.name }}</p>
+              <p class="file-size">{{ (file.size / 1024 / 1024) | number: '1.0-2' }} MB</p>
+            </div>
+          </div>
+
+          @if (progress < 100) {
+            <div class="progress-actions-buttons">
+              <button (click)="togglePause()" [attr.aria-label]="isPaused ? 'Resume upload' : 'Pause upload'" class="pause-button">
+                <i class="fa-regular" [ngClass]="isPaused ? 'fa-play' : 'fa-pause'"></i>
+              </button>
+              <button (click)="cancelUpload(); $event.stopPropagation()" aria-label="Cancel upload" class="cancel-button">
+                <i class="fa-regular fa-xmark"></i>
+              </button>
+            </div>
+          } @else if (progress === 100) {
+            <div class="success">
+              <i class="fa-regular fa-check"></i>
+            </div>
+          }
+        </div>
+
+        <div class="progress-container">
+          <progress [value]="progress" max="100"></progress>
+          <span>{{ progress }}%</span>
+        </div>
+      </div>
+    }
+
+    <section class="upload-actions">
+      <h3>Import from URL</h3>
+      <div class="import-url">
+        <input [(ngModel)]="fileUrl" placeholder="Add file URL" />
+        <button (click)="uploadFromUrl()">Upload</button>
+      </div>
+
+      <div class="actions">
+        <button (click)="cancelUpload(); cancel.emit(); $event.stopPropagation()">Cancel</button>
+        <button [disabled]="!uploadFinished" (click)="import.emit(file); $event.stopPropagation()" class="primary-button">Import</button>
+      </div>
+    </section>
+  }
+</div>

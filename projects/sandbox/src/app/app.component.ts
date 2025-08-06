@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgIf } from '@angular/common';
 
 import { EducareSvgComponent } from './shared/components/educare-svg/educare-svg.component';
 import { NotificationComponent } from './features/notification/notification.component';
@@ -8,16 +7,17 @@ import { version } from '../../../core/src/lib/config/version';
 import {
   MultiOptionSelectComponent
 } from '../../../core/src/lib/components/multi-option-select/multi-option-select.component';
+import { FileUploaderComponent } from '../../../core/src/lib/components/file-uploader/file-uploader.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     EducareSvgComponent,
-    NgIf,
     NotificationComponent,
     RadioButtonComponent,
-    MultiOptionSelectComponent
+    MultiOptionSelectComponent,
+    FileUploaderComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

@@ -5,13 +5,15 @@
     <section>
       <span>version: {{ frameworkVersion }}</span>
 
-      <button (click)="toggleTheme()" *ngIf="!darkTheme">
-        <i class="fa-solid fa-moon"></i>
-      </button>
-
-      <button (click)="toggleTheme()" *ngIf="darkTheme">
-        <i class="fa-solid fa-sun-bright"></i>
-      </button>
+      @if (darkTheme) {
+        <button (click)="toggleTheme()">
+          <i class="fa-solid fa-sun-bright"></i>
+        </button>
+      } @else {
+        <button (click)="toggleTheme()">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      }
     </section>
   </header>
 
@@ -19,5 +21,6 @@
     <notification-service-component></notification-service-component>
     <radio-button></radio-button>
     <multi-option-select></multi-option-select>
+    <file-uploader></file-uploader>
   </section>
 </main>
